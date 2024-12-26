@@ -28,18 +28,34 @@ const firebaseConfig = {
     let db = getFirestore();
     logEvent(analytics, 'page_view');
 
+
+
     const shareButton = document.querySelector(".share");
     shareButton.addEventListener("click", function() {
-        logEvent(analytics, 'select_content', {
-        content_type: 'button',
-        content_id: 'shareButton'
-        });
+        logAndSaveEvent('share', 'shareButton')
     });
 
     const buyButton = document.querySelector(".buyBtn");
     buyButton.addEventListener("click", function() {
-        logEvent(analytics, 'select_content', {
-        content_type: 'button',
-        content_id: 'buyButton'
-        });
+        logAndSaveEvent('purchase', 'buyButton')
     });
+    
+
+            // Function to log event and save it to Firestore
+            const logAndSaveEvent = async (event, contentId) => {
+                // Log event to Firebase Analytics
+                logEvent(analytics, event, {
+                    content_type: 'button',
+                    content_id: contentId
+                });
+                try {
+                    await addDoc(collection(db, "analyticsEvents"), {
+                        event: event,
+                        content_id: contentId,
+                        timestamp: serverTimestamp()
+                    });
+                    console.log("Event saved to Firestore");
+                } catch (error) {
+                    console.error("Error saving event to Firestore: ", error);
+                }
+            };

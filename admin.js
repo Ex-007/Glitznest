@@ -27,7 +27,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     });
                   }
         
-      import{getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+      import{orderBy, onSnapshot, serverTimestamp, getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
       import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
       import {getAuth, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
@@ -56,7 +56,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     //   FUNCTION TO GET USER DATA FROM DATABASE AND DISPLAY IT
 
     async function logUserDetails(userId){
-        var ref = doc(db, "Admin", userId)
+        var ref = doc(db, "CUSTOMERS", userId)
         const docSnap = await getDoc(ref)
         if(docSnap.exists()){
         let adminName = document.getElementById('adminName')
@@ -1763,3 +1763,25 @@ let proStatus = document.getElementById('proStatus')
 
 fetchPro.addEventListener('click', fetcher)
 updatePro.addEventListener('click', updater)
+
+
+
+// ANALYTICS
+const analyticsContainer = document.getElementById("analyticsData");
+const analyticsQuery = query(collection(db, "analyticsEvents"), orderBy("timestamp", "desc"));
+onSnapshot(analyticsQuery, (snapshot) => {
+    // Clear previous results
+    analyticsContainer.innerHTML = "";
+
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        const eventData = `
+            <div>
+                <strong>Event:</strong> ${data.event}<br>
+                <strong>Content ID:</strong> ${data.content_id}<br>
+                <strong>Timestamp:</strong> ${new Date(data.timestamp.seconds * 1000).toLocaleString()}
+            </div><hr>
+        `;
+        analyticsContainer.innerHTML += eventData;
+    });
+});
