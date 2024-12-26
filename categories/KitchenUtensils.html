@@ -354,7 +354,12 @@
           const newkitchenPrice = element.data().newkitchenPrice;
           const kitchenImage = element.data().kitchenImage;
 
-          checkAuth(kitchenName, newkitchenPrice, kitchenImage)
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+          checkAuth(kitchenName, newkitchenPrice, kitchenImage, journeyWay)
 
         });
 
@@ -383,14 +388,15 @@
     }
   
       // CHECKING THE AUTHENTICATION 
-      function checkAuth(kitchenName, newkitchenPrice, kitchenImage){
+      function checkAuth(kitchenName, newkitchenPrice, kitchenImage, journeyWay){
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
             addToCart(kitchenName, newkitchenPrice, kitchenImage, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }

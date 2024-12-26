@@ -19,11 +19,6 @@ doot.addEventListener('click', () => {
 
 
 let passwordIn = document.getElementById('password')
-// let usernameIn = document.getElementById('username')
-// let emailIn = document.getElementById('email')
-// let stateIn = document.getElementById('stateIn')
-// let phoneNumberIn = document.getElementById('phoneNumberIn')
-// let addressIn = document.getElementById('addressIn')
 let showHidePass = document.getElementById('showHidePass')
 
 let popNotifier = document.querySelector('.popNotifier')
@@ -1153,6 +1148,10 @@ function validationUser(){
   return true
 }
 
+//   EXTRACT SLUG CONTENT
+const urlParameters = new URLSearchParams(window.location.search)
+const redirect = urlParameters.get('redirect')
+
 
 function createNewCustomer(){
 
@@ -1190,7 +1189,7 @@ function createNewCustomer(){
     createUserWithEmailAndPassword(auth, email, password)
             .then((credentials) => {
 
-              productNAmee.textContent = email
+              productNAmee.textContent = Fullname
               popNotifier.style.display = 'flex'
               setTimeout(() => {
                 popNotifier.style.display = 'none'
@@ -1217,7 +1216,7 @@ function createNewCustomer(){
 
                 
                 setTimeout(() => {
-                    window.location.href =  'index.html'
+                    window.location.href =  redirect
                 }, 3000);
 
             })
@@ -1225,6 +1224,7 @@ function createNewCustomer(){
                 alert(error.message);
             });
 }
+
 
 
 function signInUser(){
@@ -1240,7 +1240,7 @@ function signInUser(){
           popNotifier.style.display = 'none'
         }, 1500)
         setTimeout(() => {
-                window.location.href =  'index.html'
+                window.location.href =  redirect
             }, 3000);
     })
     .catch((error) => {

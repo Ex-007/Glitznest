@@ -346,7 +346,12 @@
           const newphonePrice = element.data().newphonePrice;
           const phoneImage = element.data().phoneImage;
 
-          checkAuth(phoneName, newphonePrice, phoneImage)
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+          checkAuth(phoneName, newphonePrice, phoneImage, journeyWay)
 
         });
 
@@ -372,17 +377,15 @@ let shareNotifier = document.querySelector('.shareNotifier')
     }
 
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(phoneName, newphonePrice, phoneImage){
-      // let productNameComing = phoneName
-      // let newphonePrice = newphonePrice
-      // let productImageComing = phoneImage
+    function checkAuth(phoneName, newphonePrice, phoneImage, journeyWay){
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
             addToCart(phoneName, newphonePrice, phoneImage, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }

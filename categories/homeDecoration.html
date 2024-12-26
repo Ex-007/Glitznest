@@ -348,7 +348,12 @@
           const newhomePrice = element.data().newhomePrice;
           const homeImage = element.data().homeImage;
 
-          checkAuth(homeName, newhomePrice, homeImage)
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+          checkAuth(homeName, newhomePrice, homeImage, journeyWay)
 
         });
 
@@ -378,14 +383,15 @@
 
 
 // CHECKING THE AUTHENTICATION 
-function checkAuth(homeName, newhomePrice, homeImage){
+function checkAuth(homeName, newhomePrice, homeImage, journeyWay){
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
             addToCart(homeName, homeImage, newhomePrice, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }

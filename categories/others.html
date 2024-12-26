@@ -344,7 +344,12 @@
           const newothersPrice = element.data().newothersPrice;
           const othersImage = element.data().othersImage;
 
-          checkAuth(othersName, newothersPrice, othersImage)
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+          checkAuth(othersName, newothersPrice, othersImage, journeyWay)
 
         });
 
@@ -374,7 +379,7 @@
 
 
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(othersName, othersPrice, othersImage){
+    function checkAuth(othersName, othersPrice, othersImage, journeyWay){
       let productNameComing = othersName
       let newothersPrice = newothersPrice
       let productImageComing = othersImage
@@ -384,7 +389,8 @@
             let userId = user.uid
             addToCart(othersName, newothersPrice, othersImage, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }

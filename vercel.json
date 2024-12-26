@@ -1,9 +1,12 @@
 {
     "rewrites": [
-        {
-
-            "source": "/:path*",
-            "destination" : "/:path*.html"
-        }
+      {
+        "source": "/:path*",
+        "destination": "/:path*.html"
+      },
+      {
+        "source": "/categories/:categoryPath*",
+        "destination": "/categories/:categoryPath*.html"
+      }
     ]
-}
+  }

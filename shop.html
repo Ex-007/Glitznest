@@ -362,7 +362,18 @@
           const newProductPrice = element.data().newProductPrice;
           const productImage = element.data().productImage;
 
-          checkAuth(productName, newProductPrice, productImage)
+
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+
+
+
+
+
+          checkAuth(productName, newProductPrice, productImage, journeyWay)
 
         });
         
@@ -371,19 +382,18 @@
     }
 
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(productName, newProductPrice, productImage){
+    function checkAuth(productName, newProductPrice, productImage, journeyWay){
       let productNameComing = productName
       let productPriceComing = newProductPrice
       let productImageComing = productImage
       
         onAuthStateChanged(auth, (user) => {
           if(user){
-            // console.log(user)
             let userId = user.uid
-            // console.log(productName, productImage, productPrice, userId)
             addToCart(productName, productImage, newProductPrice, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }

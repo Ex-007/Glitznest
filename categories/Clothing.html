@@ -354,7 +354,12 @@
           const newclothingPrice = element.data().newclothingPrice;
           const productImage = element.data().productImage;
 
-          checkAuth(clothingName, newclothingPrice, productImage)
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+          checkAuth(clothingName, newclothingPrice, productImage, journeyWay)
 
         });
 
@@ -383,14 +388,15 @@
   
   
      // CHECKING THE AUTHENTICATION 
-    function checkAuth(clothingName, newclothingPrice, productImage){
+    function checkAuth(clothingName, newclothingPrice, productImage, journeyWay){
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
             addToCart(clothingName, productImage, newclothingPrice, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }

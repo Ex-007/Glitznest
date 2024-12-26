@@ -351,7 +351,12 @@
           const newlaundaryPrice = element.data().newlaundaryPrice;
           const laundaryImage = element.data().laundaryImage;
 
-          checkAuth(laundaryName, laundaryPrice, laundaryImage)
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+          checkAuth(laundaryName, laundaryPrice, laundaryImage, journeyWay)
 
         });
 
@@ -360,7 +365,7 @@
   }
   
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(laundaryName, newlaundaryPrice, laundaryImage){
+    function checkAuth(laundaryName, newlaundaryPrice, laundaryImage, journeyWay){
       // let productNameComing = laundaryName
       // let newlaundaryPrice = newlaundaryPrice
       // let productImageComing = laundaryImage
@@ -370,7 +375,8 @@
             let userId = user.uid
             addToCart(laundaryName, newlaundaryPrice, laundaryImage, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }

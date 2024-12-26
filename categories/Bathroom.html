@@ -353,7 +353,12 @@
           const newbathroomPrice = element.data().newbathroomPrice;
           const bathroomImage = element.data().bathroomImage;
 
-          checkAuth(bathroomName, newbathroomPrice, bathroomImage)
+          const originName = window.location.origin
+          const pathName = window.location.pathname
+
+          const journeyWay = `${originName}/${pathName}`
+
+          checkAuth(bathroomName, newbathroomPrice, bathroomImage, journeyWay)
 
         });
 
@@ -392,14 +397,15 @@ let shareNotifier = document.querySelector('.shareNotifier')
 
 
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(bathroomName, newbathroomPrice, bathroomImage){
+    function checkAuth(bathroomName, newbathroomPrice, bathroomImage, journeyWay){
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
             addToCart(bathroomName, bathroomImage, newbathroomPrice, userId)
           }else{
-            window.location.href = 'account.html'
+            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            window.location.href = gotoWin
           }
         })
   }
