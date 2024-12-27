@@ -33,7 +33,7 @@
   <header class="header_section innerpage_header">
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="../index">
           <span>
             GlitzNest
           </span>
@@ -48,11 +48,11 @@
             </button>
             <div id="myNav" class="overlay">
               <div class="overlay-content">
-                <a href="../index.html">Home</a>
-                <a href="../profile.html">Profile</a>
-                <a href="../shop.html">Shop</a>
-                <a href="../orders.html">Orders</a>
-                <a href="../cart.html">Cart  <i class="fa-solid fa-cart-plus"></i></a>
+                <a href="../index">Home</a>
+                <a href="../profile">Profile</a>
+                <a href="../shop">Shop</a>
+                <a href="../orders">Orders</a>
+                <a href="../cart">Cart  <i class="fa-solid fa-cart-plus"></i></a>
               </div>
             </div>
           </div>
@@ -77,14 +77,14 @@
 <div class="catCat" style="display: none;" id="catCat">
   <ul>
     <li id="closeCat">---</li>
-    <li><a href="../shop.html">Jeweleries</a></li>
-    <li><a href="KitchenUtensils.html">Kitchen Utensils</a></li>
-    <li><a href="Laundary.html">Laundary</a></li>
+    <li><a href="../shop">Jeweleries</a></li>
+    <li><a href="KitchenUtensils">Kitchen Utensils</a></li>
+    <li><a href="Laundary">Laundary</a></li>
     <li><a href="#">Clothing</a></li>
-    <li><a href="Bathroom.html">Bathroom</a></li>
-    <li><a href="phoneAccessories.html">Phone Accessories</a></li>
-    <li><a href="homeDecoration.html">Home Decoration</a></li>
-    <li><a href="others.html">Others</a></li>
+    <li><a href="Bathroom">Bathroom</a></li>
+    <li><a href="phoneAccessories">Phone Accessories</a></li>
+    <li><a href="homeDecoration">Home Decoration</a></li>
+    <li><a href="others">Others</a></li>
   </ul>
 </div>
 
@@ -151,10 +151,10 @@
             Menu
           </h4>
           <div class="info_links_menu">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="shop.html">Shop</a>
-            <a href="blog.html">Blog</a>
+            <a href="index">Home</a>
+            <a href="about">About</a>
+            <a href="shop">Shop</a>
+            <a href="blog">Blog</a>
           </div>
         </div>
       </div>
@@ -170,7 +170,7 @@
       </div>
       <div class="col-md-6 col-lg-3">
         <h4>
-          <a href="contactUs.html">Contact Us</a>
+          <a href="contactUs">Contact Us</a>
         </h4>
         <div class="info_contact">
           <a href="">
@@ -373,7 +373,7 @@
   // GENERATE SHARABLE LINKS
   function generateSlug(slug){
       const favValue = 'CLOTHING'
-      const redirectUrl = `${window.location.origin}/single.html?slug=${slug}&road=${favValue}`
+      const redirectUrl = `${window.location.origin}/single?slug=${slug}&road=${favValue}`
         navigator.clipboard.writeText(redirectUrl)
         .then(() => {
           shareNotifier.style.display = 'flex'
@@ -395,7 +395,7 @@
             let userId = user.uid
             addToCart(clothingName, productImage, newclothingPrice, userId)
           }else{
-            let gotoWin = `${window.location.origin}/account.html?redirect=${journeyWay}`
+            let gotoWin = `${window.location.origin}/account?redirect=${journeyWay}`
             window.location.href = gotoWin
           }
         })

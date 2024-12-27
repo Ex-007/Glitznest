@@ -95,7 +95,7 @@
     <header class="header_section innerpage_header">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index">
             <span> GlitzNest </span>
           </a>
           <div class="" id="">
@@ -107,10 +107,10 @@
               </button>
               <div id="myNav" class="overlay">
                 <div class="overlay-content">
-                  <a href="index.html">Home</a>
-                  <a href="shop.html">Shop</a>
-                  <a href="orders.html">Orders</a>
-                  <a href="cart.html">Cart <i class="fa-solid fa-cart-plus"></i></a>
+                  <a href="index">Home</a>
+                  <a href="shop">Shop</a>
+                  <a href="orders">Orders</a>
+                  <a href="cart">Cart <i class="fa-solid fa-cart-plus"></i></a>
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@
             <p>Shipping Fee : <span id="deliveryFee">&#x20A6; 800/product</span></p>
             <p>Delivery Date: <span  id="deliveryDateFrom"></span> - <span  id="deliveryDateTo"></span</p>
         </div>
-        <a href="profile.html">Edit Details...</a>
+        <a href="profile">Edit Details...</a>
     </div>
 
     <!-- CART ITEMS -->
@@ -190,10 +190,10 @@
                 Menu
               </h4>
               <div class="info_links_menu">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="shop.html">Shop</a>
-                <a href="blog.html">Blog</a>
+                <a href="index">Home</a>
+                <a href="about">About</a>
+                <a href="shop">Shop</a>
+                <a href="blog">Blog</a>
               </div>
             </div>
           </div>
@@ -209,7 +209,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <h4>
-              <a href="contactUs.html">Contact Us</a>
+              <a href="contactUs">Contact Us</a>
             </h4>
             <div class="info_contact">
               <a href="">
@@ -322,7 +322,7 @@
             startListeningForCarts();
           } else {
             stopListeningForCarts()
-            window.location.href = "account.html";
+            window.location.href = "account";
           }
         });
       }
@@ -570,15 +570,15 @@ function generateRandomAlphanumeric(length) {
                             paidOn
                         }));
 
-                            window.location.href = 'success.html';
+                            window.location.href = 'success';
                     }else{
-                        window.location.href = 'checkout.html'
+                        window.location.href = 'checkout'
                     }
                     console.log(response);
                 },
                 onClose: function(data) {
                     setTimeout(() => {
-                        window.location.href = 'shop.html'
+                        window.location.href = 'shop'
                         
                     }, 2000);
                 }
@@ -673,7 +673,7 @@ function generateRandomAlphanumeric(length) {
     // let logOut = document.getElementById('logOut').addEventListener('click', () => {
     //     signOut(auth)
     //     .then(() => {
-    //         window.location.href = 'account.html'
+    //         window.location.href = 'account'
     //     })
     //     .catch(err => {
     //         console.error(err);
